@@ -6,12 +6,13 @@ import os
 app  = Flask(__name__)
 
 #API information and Querries from rapidapi.com
-URL = "https://hiring-manager-api.p.rapidapi.com/recruitment-manager-24h"
+"""URL = "https://hiring-manager-api.p.rapidapi.com/recruitment-manager-24h"
 PARAMETERS = {
     "x-rapidapi-host": "hiring-manager-api.p.rapidapi.com",
     "x-rapidapi-key": "7cac25eb74msh7c408a9164ad5dap1f8899jsnb26f612d490c"
 }
-
+"""
+URL = "https://dummyjson.com/users"
 #Running my Application
 @app.route("/")
 def home():
@@ -20,7 +21,7 @@ def home():
 @app.route("/get-data", methods=["GET"])
 def get_data():
         try:
-            response = requests.get(URL, headers=PARAMETERS)
+            response = requests.get(URL)
             response.raise_for_status() #Error when bad responses found
             data = response.json()
             return data # Sending data to frontend

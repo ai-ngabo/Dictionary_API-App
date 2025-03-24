@@ -1,3 +1,4 @@
+/*
 document.getElementById("get-data").addEventListener("click", async () => {
     const outputElement = document.getElementById("output");
 
@@ -29,5 +30,36 @@ function formatDataAsHTML(data) {
     }
     formatted += "</ul>";
     return formatted;
-}
+}"""
+*/
+document.getElementById("get-data").addEventListener("click", async () => {
+    const outputElement = document.getElementById("output");
+    outputElement.innerHTML = "<p>Loading data...</p>"; // Show loading indicator
+
+    try {
+        const response = await fetch("https://dummyjson.com/users");
+        const data = await response.json();
+
+        if (data.users && data.users.length > 0) {
+            let formattedUsers = "<ul>";
+            data.users.forEach(user => {
+                formattedUsers += `
+                    <li>
+                        <strong>Name:</strong> ${user.firstName} ${user.lastName}<br>
+                        <strong>Age:</strong> ${user.age}<br>
+                        <strong>Email:</strong> ${user.email}<br>
+                        <strong>Phone:</strong> ${user.phone}
+                    </li><br>
+                `;
+            });
+            formattedUsers += "</ul>";
+            outputElement.innerHTML = formattedUsers; // Render formatted users
+        } else {
+            outputElement.innerHTML = "<p>No users found!</p>";
+        }
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        outputElement.innerHTML = "<p style='color: red;'>An error occurred. Please try again later.</p>";
+    }
+});
 
