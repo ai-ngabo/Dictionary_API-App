@@ -32,10 +32,10 @@ def get_data():
             return jsonify({"error": "HTTP error occurred", "details": str(e)}), 500
         
         except requests.exceptions.Timeout as e:
-        return jsonify({"error": "Request timed out", "details": str(e)}), 500
+            return jsonify({"error": "Request timed out", "details": str(e)}), 500
 
         except requests.exceptions.RequestException as e:
-        return jsonify({"error": "An error occurred", "details": str(e)}), 500
+            return jsonify({"error": "An error occurred", "details": str(e)}), 500
 
 
 if __name__ == "__main__":
