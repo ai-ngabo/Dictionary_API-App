@@ -9,7 +9,7 @@ app  = Flask(__name__)
 URL = "https://hiring-manager-api.p.rapidapi.com/recruitment-manager-24h"
 PARAMETERS = {
     "x-rapidapi-host": "hiring-manager-api.p.rapidapi.com",
-    "x-rapidapi-key": os.getenv("API_KEY")
+    "x-rapidapi-key": "7cac25eb74msh7c408a9164ad5dap1f8899jsnb26f612d490c"
 }
 
 #Running my Application
