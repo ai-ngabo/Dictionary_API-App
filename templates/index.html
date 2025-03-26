@@ -1,22 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Job Searching App</title>
-    <link rel="stylesheet" href="/static/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alain's Dictionary</title>
+  <link rel="stylesheet" href="static/index.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Find Your Dream Job</h1>
-        <form id="job-search-form">
-            <input type="text" id="search-term" placeholder="Job Title (e.g., Web Developer)" required>
-            <input type="text" id="location" placeholder="Location (e.g., Mumbai)" required>
-            <button type="submit">Search</button>
-        </form>
-        <div id="job-results"></div>
-    </div>
-    <script src="/static/scripts.js"></script>
+  <header>
+    <h1>Alain's Dictionary</h1>
+  </header>
+  
+  <div class="container">
+    <input id="wordInput" type="text" placeholder="Enter a word..." />
+    <button id="searchButton">Search</button>
+    <div id="results"></div>
+  </div>
+  
+  <footer>
+    <p>&copy; 2025 Alain's Dictionary. All rights reserved.</p>
+  </footer>
+
+  <script src="static/index.js"></script>
 </body>
 </html>
-
