@@ -1,55 +1,65 @@
-document.getElementById("job-search-form").addEventListener("submit", async (event) => {
-    event.preventDefault();
 
-    const searchTerm = document.getElementById("search-term").value;
-    const location = document.getElementById("location").value;
-    const resultsElement = document.getElementById("job-results");
-
-    // Show loading message
-    resultsElement.innerHTML = "<p>Loading jobs...</p>";
-
-    // Prepare payload
-    const payload = {
-        search_term: searchTerm,
-        location: location,
-        results_wanted: 5,
-        site_name: ["indeed", "linkedin", "zip_recruiter", "glassdoor"],
-        distance: 50,
-        job_type: "fulltime",
-        is_remote: false,
-        linkedin_fetch_description: false,
-        hours_old: 72
-    };
-
-    try {
-        // Send request to backend
-        const response = await fetch("/api/jobs", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(payload),
-        });
-
-        const data = await response.json();
-
-        if (data.error) {
-            resultsElement.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
-        } else if (data.jobs && data.jobs.length > 0) {
-            resultsElement.innerHTML = data.jobs.map(job => `
-                <div class="job-card">
-                    <h2>${job.job_title}</h2>
-                    <p><strong>Company:</strong> ${job.company_name}</p>
-                    <p><strong>Location:</strong> ${job.job_location}</p>
-                    <p><a href="${job.job_link}" target="_blank">Apply Now</a></p>
-                </div>
-            `).join("");
-        } else {
-            resultsElement.innerHTML = "<p>No jobs found. Try a different search.</p>";
-        }
-    } catch (error) {
-        console.error("Error fetching jobs:", error);
-        resultsElement.innerHTML = "<p style='color: red;'>An error occurred. Please try again later.</p>";
+// I start by adding an event listener to search button
+document.getElementById("searchButton").addEventListener("click", () => {
+    const word = document.getElementById("wordInput").value; // when button is clicked, the function will execute
+    
+    // when input field is empty, show Alert!
+    if (!word) {
+      alert("Enter a word please!!!"); // notifying user to enter the word
+      return; //exit to avoid empty search
     }
-});
+    
+    // Variable to hold the Url for requesting the API
+    const URL = `https://lingua-robot.p.rapidapi.com/language/v1/entries/en/${word}`;
+    
+    // parameters for confirmation from the Api sources including key and host information
+    const headers = {
+      "x-rapidapi-key": "b6b47bd245msh607ce92c7dc86b4p18cd62jsn8928279fedd2",
+      "x-rapidapi-host": "lingua-robot.p.rapidapi.com"
+    }; 
+  
+    //Using fetch function to make a request to the API by url and parameters
+    fetch(URL, { headers })
+      .then(response => {
+        //check if response from Api is successful (200)
+        if (!response.ok) {
+          throw new Error("Word not found!"); // if not throw error
+        }
+        return response.json(); // Parse the response if successfull!
+      })
+      .then(data => {
+        // Get results div where definitions will be displayed
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";
+        
+        // Extract entries from APi response
+        const entries = data.entries;
 
+        //Check if no entries found
+        if (entries.length === 0) {
+          resultsDiv.innerHTML = "<p>No definitions found, search another word!.</p>";
+          return; //exit the function
+        }
+  
+        // loop through each entry in Api response
+        entries.forEach(entry => {
+            //  create h3 element for word and append it to thr results div
+          const wordElement = document.createElement("h3");
+          wordElement.textContent = `Word: ${entry.entry}`;
+          resultsDiv.appendChild(wordElement);
+        
+          // loop through each lexem(the meaning) for the word
+          entry.lexemes.forEach(lexeme => {
+            //create paragraph element for definition and append it to the results div
+            const definitionElement = document.createElement("p");
+            definitionElement.textContent = `Definition: ${lexeme.senses[0]?.definition}`;
+            resultsDiv.appendChild(definitionElement);
+          });
+        });
+      })
+
+      //Handling any errors that occur during the request or data processing
+      .catch(err => {
+        document.getElementById("results").innerHTML = `<p>${err.message}</p>`;
+      });
+  }); 
