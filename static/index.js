@@ -1,5 +1,3 @@
-//importing my api key hidden
-import API_KEY from "./script/api-key.js"
 
 // I start by adding an event listener to search button
 document.getElementById("searchButton").addEventListener("click", () => {
@@ -16,7 +14,7 @@ document.getElementById("searchButton").addEventListener("click", () => {
     
     // parameters for confirmation from the Api sources including key and host information
     const headers = {
-      "x-rapidapi-key": API_KEY,
+      "x-rapidapi-key": "b6b47bd245msh607ce92c7dc86b4p18cd62jsn8928279fedd2",
       "x-rapidapi-host": "lingua-robot.p.rapidapi.com"
     }; 
   
@@ -64,4 +62,5 @@ document.getElementById("searchButton").addEventListener("click", () => {
       .catch(err => {
         document.getElementById("results").innerHTML = `<p>${err.message}</p>`;
       });
-  }); 
+  });
+  
