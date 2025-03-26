@@ -1,65 +1,55 @@
-/*
-document.getElementById("get-data").addEventListener("click", async () => {
-    const outputElement = document.getElementById("output");
+document.getElementById("job-search-form").addEventListener("submit", async (event) => {
+    event.preventDefault();
 
-    // Clear previous content and show loading message
-    outputElement.innerHTML = "<p>Loading data...</p>";
+    const searchTerm = document.getElementById("search-term").value;
+    const location = document.getElementById("location").value;
+    const resultsElement = document.getElementById("job-results");
+
+    // Show loading message
+    resultsElement.innerHTML = "<p>Loading jobs...</p>";
+
+    // Prepare payload
+    const payload = {
+        search_term: searchTerm,
+        location: location,
+        results_wanted: 5,
+        site_name: ["indeed", "linkedin", "zip_recruiter", "glassdoor"],
+        distance: 50,
+        job_type: "fulltime",
+        is_remote: false,
+        linkedin_fetch_description: false,
+        hours_old: 72
+    };
 
     try {
-        const response = await fetch("/get-data");
+        // Send request to backend
+        const response = await fetch("/api/jobs", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(payload),
+        });
+
         const data = await response.json();
 
-        // Check for an error in the returned data
         if (data.error) {
-            outputElement.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+            resultsElement.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+        } else if (data.jobs && data.jobs.length > 0) {
+            resultsElement.innerHTML = data.jobs.map(job => `
+                <div class="job-card">
+                    <h2>${job.job_title}</h2>
+                    <p><strong>Company:</strong> ${job.company_name}</p>
+                    <p><strong>Location:</strong> ${job.job_location}</p>
+                    <p><a href="${job.job_link}" target="_blank">Apply Now</a></p>
+                </div>
+            `).join("");
         } else {
-            // Format the output as a list for better readability
-            outputElement.innerHTML = formatDataAsHTML(data);
+            resultsElement.innerHTML = "<p>No jobs found. Try a different search.</p>";
         }
     } catch (error) {
-        console.error("Error fetching data:", error);
-        outputElement.innerHTML = "<p style='color: red;'>An error occurred. Please try again.</p>";
-    }
-});
-
-// Helper function to format data as HTML
-function formatDataAsHTML(data) {
-    let formatted = "<ul>";
-    for (const [key, value] of Object.entries(data)) {
-        formatted += `<li><strong>${key}:</strong> ${value}</li>`;
-    }
-    formatted += "</ul>";
-    return formatted;
-}"""
-*/
-document.getElementById("get-data").addEventListener("click", async () => {
-    const outputElement = document.getElementById("output");
-    outputElement.innerHTML = "<p>Loading data...</p>"; // Show loading indicator
-
-    try {
-        const response = await fetch("https://dummyjson.com/users");
-        const data = await response.json();
-
-        if (data.users && data.users.length > 0) {
-            let formattedUsers = "<ul>";
-            data.users.forEach(user => {
-                formattedUsers += `
-                    <li>
-                        <strong>Name:</strong> ${user.firstName} ${user.lastName}<br>
-                        <strong>Age:</strong> ${user.age}<br>
-                        <strong>Email:</strong> ${user.email}<br>
-                        <strong>Phone:</strong> ${user.phone}
-                    </li><br>
-                `;
-            });
-            formattedUsers += "</ul>";
-            outputElement.innerHTML = formattedUsers; // Render formatted users
-        } else {
-            outputElement.innerHTML = "<p>No users found!</p>";
-        }
-    } catch (error) {
-        console.error("Error fetching data:", error);
-        outputElement.innerHTML = "<p style='color: red;'>An error occurred. Please try again later.</p>";
+        console.error("Error fetching jobs:", error);
+        resultsElement.innerHTML = "<p style='color: red;'>An error occurred. Please try again later.</p>";
     }
 });
 
