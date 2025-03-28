@@ -73,6 +73,7 @@ main {
     padding: 10px;
     font-size: 1rem;
     border: none;
+    margin-top: 20px;
 }
 
 .access a button:hover {
@@ -165,7 +166,7 @@ main {
     margin-top: 10px;
 }
 
-/* MEDIA QUERIES */
+/* Ensuring that my page runs on diff devices  */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
