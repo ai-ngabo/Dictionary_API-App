@@ -47,7 +47,7 @@ btn.addEventListener("click", () => {
                     <h3>${word}</h3>
                 </div>
                 <div class="details">
-                    <p>${phonetic}</p>
+                    <p>${word} /${phonetic}/</p>
                 </div>
                 <p class="word-meaning">Definition: ${definition}</p>
                 <p class="word-example">Eg: ${example}</p>`;
