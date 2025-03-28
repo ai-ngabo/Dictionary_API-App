@@ -7,5 +7,7 @@ app = Flask(__name__) #Initializing the flask app
 def index():
     return render_template('index.html') # Connecting Flask to my Html file
 
+def dictionary():
+    return render_template('dictionary.html') # connecting to second page
 if __name__ == '__main__':
     app.run(debug=True) # Starting the server
