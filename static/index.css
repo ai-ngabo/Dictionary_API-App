@@ -1,97 +1,157 @@
-/* General Styles */
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f4f9;
+}
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-color: blanchedalmond;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
     display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  /*Styles for my header part of web page*/ 
-  header {
-    background: #131a2d;
+    justify-content: space-between;
+    align-items: center;
+}
+h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav a {
     color: white;
-    text-align: center;
-    padding: 5px; 
-    font-size: 1.2rem; 
-  }
-  
-  /*Styles for my footer part of the webpage*/
-  footer {
-    background: #131a2d;
-    background: ;
-    color: white;
-    text-align: center;
-    padding: 5px; 
-    font-size: 0.8rem; 
-  }
-  
-  /*Styles for my dictionary api holder*/
-  .container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    flex: 1; /* Allows this section to expand */
-  }
-  
-  /*Styles for the small box where the word will be inserted*/
-  input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    margin: 10px 0;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
- /*Styles for the button*/
-  button {
-    padding: 10px 20px;
-    font-size: 1em;
-    color: white;
-    background: #327ce4;
-    border: none;
-    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 10px
+}
+
+main{
+    margin-top: 120px;
+} 
+
+.welcome {
+    font-size: 45px;
+    margin-bottom: 30px;
+}
+
+.access {
+    font-size: 25px;
+}
+
+.access a button {
+    width: 25%;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  #results {
-    margin-top: 20px;
-    text-align: left;
-  }
-  
-  /* Scripts for the web's responsiveness */
-  @media (max-width: 768px) {
-    header {
-      font-size: 1rem; /* Smaller font for medium screens */
-      padding: 3px;
-    }
-  
-    footer {
-      font-size: 0.7rem;
-      padding: 4px;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    header {
-      font-size: 0.9rem; /* Further decrease for smaller screens */
-      padding: 2px;
-    }
-  
-    footer {
-      font-size: 0.6rem;
-      padding: 2px;
-    }
-  }
-  
+    transition: 0,3s ease;
+    background-color: rgb(154, 221, 255);
+}
+.access a button:hover {
+    background-color: #4da166;
+}
+
+.button1:hover {
+    background-color: rgb(56, 130, 86);
+}
+
+.container {
+    background-color:white;
+    width: 90vmin;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 50%;
+    padding: 40px 40px;
+    border-radius: 20px;
+    margin: 0;
+}
+.search-box {
+    padding-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+#searcher {
+    width: 25%;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0,3s ease;
+    background-color: rgb(154, 221, 255);
+} 
+
+#searcher:hover {
+    background-color: #4da166;
+    
+}
+
+#inp-word {
+    padding: 5px;
+    width: 70%;
+}
+
+.result {
+    padding-bottom: 20px;
+}
+.result h3 {
+    font-size: 24px;
+    color: #1f194c;
+}
+
+.result .word {
+    display: flex;
+    
+}
+
+.result #sound-button {
+    background-color: rgb(255, 255, 255);
+    color: rgb(87, 87, 87); 
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+    
+}
+
+.details {
+    display: flex;
+    gap: 10px;
+    color: #939393;
+    margin-bottom: 80px;
+    width: auto;
+    font-size: 12px;
+    margin-left: 40px;
+    background-color: rgb(255, 255, 255);
+   
+}
+
+.word-meaning {
+    color: #575a7b;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-bottom: 20px;
+    border-left: 5px solid rgb(100, 98, 98);
+    padding-left: 20px;
+}
+
+.word-example {
+    color: #575a7b;
+    font-style: italic;
+    border-left: 5px solid rgb(100, 98, 98);
+    padding-left: 20px;
+    font-size: 14px;
+}
