@@ -1,7 +1,11 @@
+/* Reset default margins and paddings */
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
+
+/* General body styling */
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
@@ -10,17 +14,21 @@ body {
     background-color: blanchedalmond;
 }
 
+/* Header styling */
 header {
     background-color: #333;
     color: white;
-    padding: 20px 0;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
+
 h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin-left: 20px;
+    font-size: 1.8rem;
 }
 
 nav ul {
@@ -36,122 +44,190 @@ nav ul li {
 nav a {
     color: white;
     text-decoration: none;
-    margin-left: 10px
 }
 
-main{
-    margin-top: 120px;
-} 
+/* Main container */
+main {
+    margin-top: 80px;
+    padding: 20px;
+}
 
+/* Welcome section */
 .welcome {
-    font-size: 45px;
-    margin-bottom: 30px;
+    font-size: 2rem;
+    margin-bottom: 20px;
 }
 
+/* Access button */
 .access {
-    font-size: 25px;
+    font-size: 1.2rem;
 }
 
 .access a button {
-    width: 25%;
+    width: 100%;
+    max-width: 250px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0,3s ease;
+    transition: 0.3s ease;
     background-color: rgb(154, 221, 255);
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
 }
+
 .access a button:hover {
     background-color: #4da166;
 }
 
-.button1:hover {
-    background-color: rgb(56, 130, 86);
+/* Search container */
+.container {
+    background-color: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 30px;
+    border-radius: 15px;
+    text-align: left;
 }
 
-.container {
-    background-color:white;
-    width: 90vmin;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    top: 60%;
-    left: 50%;
-    padding: 40px 40px;
-    border-radius: 20px;
-    margin: 0;
-}
+/* Search box */
 .search-box {
-    padding-bottom: 40px;
     display: flex;
     justify-content: space-between;
-
-}
-
-#searcher {
-    width: 25%;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0,3s ease;
-    background-color: rgb(154, 221, 255);
-} 
-
-#searcher:hover {
-    background-color: #4da166;
-    
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 #inp-word {
-    padding: 5px;
+    padding: 8px;
     width: 70%;
+    flex-grow: 1;
 }
 
-.result {
-    padding-bottom: 20px;
+#searcher {
+    width: 30%;
+    min-width: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    background-color: rgb(154, 221, 255);
+    border: none;
+    padding: 8px;
 }
+
+#searcher:hover {
+    background-color: #4da166;
+}
+
+/* Result container */
+.result {
+    padding-top: 20px;
+}
+
 .result h3 {
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #1f194c;
 }
 
 .result .word {
     display: flex;
-    
+    align-items: center;
+    gap: 10px;
 }
 
+/* Sound button */
 .result #sound-button {
     background-color: rgb(255, 255, 255);
-    color: rgb(87, 87, 87); 
+    color: rgb(87, 87, 87);
     border: none;
-    font-size: 14px;
+    font-size: 1rem;
     cursor: pointer;
     height: 40px;
     width: 40px;
-    
 }
 
+/* Word details */
 .details {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     color: #939393;
-    margin-bottom: 80px;
-    width: auto;
-    font-size: 12px;
-    margin-left: 40px;
-    background-color: rgb(255, 255, 255);
-   
+    font-size: 0.9rem;
+    margin-top: 10px;
 }
 
-.word-meaning {
+/* Meaning and Example */
+.word-meaning, .word-example {
     color: #575a7b;
-    font-size: 14px;
-    padding-left: 20px;
-    padding-bottom: 20px;
-    border-left: 5px solid rgb(100, 98, 98);
-    padding-left: 20px;
+    font-size: 1rem;
+    padding-left: 15px;
+    border-left: 4px solid rgb(100, 98, 98);
+    margin-top: 10px;
 }
 
-.word-example {
-    color: #575a7b;
-    font-style: italic;
-    border-left: 5px solid rgb(100, 98, 98);
-    padding-left: 20px;
-    font-size: 14px;
+/* MEDIA QUERIES */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        margin: 10px 0;
+    }
+
+    nav ul {
+        padding-top: 10px;
+    }
+
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .welcome {
+        font-size: 1.5rem;
+    }
+
+    .access a button {
+        width: 80%;
+    }
+
+    .search-box {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #inp-word {
+        width: 100%;
+    }
+
+    #searcher {
+        width: 100%;
+    }
 }
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.2rem;
+    }
+
+    .welcome {
+        font-size: 1.2rem;
+    }
+
+    .access {
+        font-size: 1rem;
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .word-meaning, .word-example {
+        font-size: 0.9rem;
+    }
+}
+
