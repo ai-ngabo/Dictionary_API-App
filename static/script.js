@@ -1,4 +1,5 @@
-require('dotenv').config(); 
+require('dotenv').config();
+const ApiKey = process.env.API_KEY; 
 const url = `https://dictionaryapi.com/api/v3/references/sd4/json/`;
 const result = document.getElementById("result");
 const sound = document.getElementById("sound");
@@ -11,8 +12,11 @@ btn.addEventListener("click", () => {
         return;
     }
 
-    fetch(`${url}${inpWord}?key=${process.env.API_KEY}`)
+    fetch(`${url}${inpWord}?key=${ApiKey}`)
         .then((response) => {
+            if (response.status === 503 || response.status === 504) {
+                throw new Error("The API is currently unavailable. Please try again later.");
+            }
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -57,7 +61,7 @@ btn.addEventListener("click", () => {
         })
         .catch((error) => {
             console.error("Error fetching data:", error);
-            result.innerHTML = `<p>Error fetching data for the word "${inpWord}". Please try again!</p>`;
+            result.innerHTML = `<p>Error fetching data for the word "${inpWord}". Please try another word!</p>`;
         });
 });
 
