@@ -1,4 +1,5 @@
-const ApiKey = '9c8a13e3-55ae-46ca-b10d-2f9a00892179'; 
+require('dotenv').config(); // for Hiding my API key
+const ApiKey = process.env.API-KEY; 
 const url = `https://dictionaryapi.com/api/v3/references/sd4/json/`;
 const result = document.getElementById("result");
 const sound = document.getElementById("sound");
