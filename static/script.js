@@ -1,5 +1,4 @@
-require('dotenv').config(); // for Hiding my API key
-const ApiKey = process.env.API-KEY; 
+require('dotenv').config(); 
 const url = `https://dictionaryapi.com/api/v3/references/sd4/json/`;
 const result = document.getElementById("result");
 const sound = document.getElementById("sound");
@@ -12,7 +11,7 @@ btn.addEventListener("click", () => {
         return;
     }
 
-    fetch(`${url}${inpWord}?key=${ApiKey}`)
+    fetch(`${url}${inpWord}?key=${process.env.API_KEY}`)
         .then((response) => {
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
@@ -36,7 +35,7 @@ btn.addEventListener("click", () => {
               
                 example = wordData.def?.[0]?.sseq?.[0]?.[0]?.[1]?.dt?.[1]?.[1]?.[0]?.t || "No example available";
             } catch (err) {
-                console.warn("Example not found in response", err);
+                console.warn("Example not found", err);
             }
 
         
@@ -48,7 +47,7 @@ btn.addEventListener("click", () => {
                     <h3>${word}</h3>
                 </div>
                 <div class="details">
-                    <p>${word} /${phonetic}/</p>
+                    <p>word/${phonetic}/</p>
                 </div>
                 <p class="word-meaning">Definition: ${definition}</p>
                 <p class="word-example">Eg: ${example}</p>`;
