@@ -97,6 +97,6 @@ if __name__ == '__main__':
     app.run(debug=True) # Starting the server
 ```
 ### Significant Links
-- Alain's Dictionary [dict.ai-ngabo.tech](https://dict.ai-ngabo.tech)
+- Alain's Dictionary App [dict.ai-ngabo.tech](https://www.ai-ngabo.tech)
 - My Linkedin Account [Visit Account](https://www.linkedin.com/in/ngabo-alain)
 - App Tutorial on YouTube 👉[Video](https://youtu.be/fiExjF78uwQ)
